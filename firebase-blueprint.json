@@ -1,0 +1,113 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Represents a Vesta real estate agency user account",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Unique identifier of the registered user"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "Email address of the agency account"
+        },
+        "agencyName": {
+          "type": "string",
+          "description": "The name of the real estate agency"
+        },
+        "collaborators": {
+          "type": "string",
+          "enum": [
+            "1-3",
+            "3-5",
+            "5-10",
+            "10+"
+          ],
+          "description": "Bands for the select number of agency collaborators"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Account registration timestamp"
+        }
+      },
+      "required": [
+        "uid",
+        "email",
+        "agencyName",
+        "collaborators"
+      ]
+    },
+    "ListingReport": {
+      "title": "ListingReport",
+      "description": "A generated property report with metadata and images",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique ID of the listing report"
+        },
+        "userId": {
+          "type": "string",
+          "description": "Owner user identifier"
+        },
+        "address": {
+          "type": "string",
+          "description": "Property physical address"
+        },
+        "comune": {
+          "type": "string",
+          "description": "Property community or city"
+        },
+        "cap": {
+          "type": "string",
+          "description": "Postal code"
+        },
+        "price": {
+          "type": "number",
+          "description": "Valued list price"
+        },
+        "sqm": {
+          "type": "number",
+          "description": "Square meters habitable surface"
+        },
+        "rooms": {
+          "type": "string",
+          "description": "Room count description"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Creation timestamp"
+        },
+        "photos": {
+          "type": "array",
+          "description": "Array of compressed base64 images of the property"
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "address",
+        "comune",
+        "cap",
+        "price",
+        "sqm",
+        "rooms"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Agency profile details"
+    },
+    "/listings/{listingId}": {
+      "schema": "ListingReport",
+      "description": "List of synthesized property listing reports"
+    }
+  }
+}

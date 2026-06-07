@@ -1,0 +1,6 @@
+{
+  "name": "Vesta AI",
+  "description": "Copilot AI per agenti immobiliari con integrazione di posizioni e immagini per analisi spaziale, economica e marketing avanzata.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

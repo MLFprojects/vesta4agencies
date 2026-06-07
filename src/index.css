@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Red Hat Text", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Playfair Display", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono", "SF Mono", "Fira Code", ui-monospace, SFMono-Regular, monospace;
+
+  /* Custom Warm Theme Accent Colors */
+  --color-brand-green: #1B3B2B;          /* Deep Forest Green for accents/headers */
+  --color-brand-ultra-dark: #2C3E35;    /* Muted Charcoal for body text */
+  --color-brand-light-green: #E8F5E9;   /* Soft pastel green with mint tones */
+  --color-brand-warm-offwhite: #FDFBF7; /* Cozy warm-white dominative background */
+  --color-brand-warm-alabaster: #FAF6F0; /* Soft alabaster fill */
+  --color-brand-warm-cream: #F5EFEB;     /* Subtle cream border divider lines */
+}
+
+@layer base {
+
+  body {
+    background-color: var(--color-brand-warm-offwhite);
+    color: var(--color-brand-ultra-dark);
+    -webkit-font-smoothing: antialiased;
+    font-size: 15px; /* Pristine modern body size */
+    font-family: var(--font-sans);
+    letter-spacing: normal; /* Comfortable general tracking of 0px */
+    line-height: 1.6; /* Generous 1.6x line-height for readability */
+  }
+  h1, h2, h3, h4, .heading-cool {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em; /* Adjusted tracking for serif display */
+    color: var(--color-brand-green);
+    line-height: 1.25;
+  }
+}
+
+@layer utilities {
+  /* Relaxed typography layout aligned with requested larger spaciousness */
+  .cool-kerning {
+    letter-spacing: 0.01em;
+  }
+  .cool-kerning-tight {
+    letter-spacing: -0.01em;
+  }
+
+
+  /* Levitation Effect adjusted with warm shadow colors */
+  .hover-lift {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 20px 25px -5px rgba(44, 53, 40, 0.05), 0 8px 10px -6px rgba(44, 53, 40, 0.05);
+  }
+
+  /* Custom Floating Badges Animation */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-2px);
+    }
+  }
+
+  .floating-badge {
+    animation: float 3s ease-in-out infinite;
+  }
+}
+
+/* Print CSS Media query optimizations to get crisp A4 sheets output */
+@media print {
+  body * {
+    visibility: hidden;
+    background-color: white !important;
+    color: black !important;
+  }
+  
+  #results-dashboard-root {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  #vesta-sidebar, .no-print, nav, header, footer, button, .sticky, iframe, select, input {
+    display: none !important;
+  }
+
+  .print-page-container, .print-page-container * {
+    visibility: visible !important;
+  }
+
+  .print-page-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 10mm !important;
+    background: white !important;
+    color: black !important;
+  }
+
+  /* Keep input element boundaries readable but remove text overlays */
+  input[type="text"], input[type="date"] {
+    display: inline-block !important;
+    border: none !important;
+    border-bottom: 1px solid black !important;
+    outline: none !important;
+    background-color: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-weight: bold !important;
+    color: black !important;
+    width: auto !important;
+  }
+}
